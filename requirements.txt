@@ -1,0 +1,13 @@
+# Versions are the ones the committed notebook outputs were produced with
+# (Python 3.10). Unpinned upper bounds are deliberate for the smaller libraries.
+pandas
+numpy
+scikit-learn
+xgboost
+nltk
+matplotlib
+seaborn
+tensorflow
+torch
+transformers
+jupyter

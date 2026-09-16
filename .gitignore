@@ -1,0 +1,22 @@
+# Datasets — Financial PhraseBank is CC BY-NC-SA, derived files inherit share-alike.
+# See the README for where to get the sources.
+data.csv
+data_b.csv
+data_cleaned.csv
+*.csv
+
+# Models and checkpoints
+*.pkl
+*.h5
+*.keras
+*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# OS
+.DS_Store
