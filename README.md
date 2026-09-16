@@ -1,12 +1,12 @@
-# Financial Sentiment Analysis — a controlled comparison of 9 algorithms
+# Financial Sentiment Analysis: a controlled comparison of 9 algorithms
 
 Which algorithm should classify the sentiment of a financial headline? I did not want to
 answer that from a blog post, so I ran the comparison myself: nine algorithms spanning
 classical machine learning, recurrent neural networks and a transformer, on one
 deduplicated, class-balanced dataset, under identical preprocessing.
 
-**The short answer: a linear SVM won, and it beat FinBERT — a transformer pre-trained on
-financial text — while training in under four seconds instead of eighty-four.**
+**The short answer: a linear SVM won, and it beat FinBERT a transformer pre-trained on
+financial text, while training in under four seconds instead of eighty-four.**
 
 This is self-directed work, not a set assignment. I set the question and ran it to decide
 which model to put into a sentiment pipeline I was building.
@@ -48,7 +48,7 @@ running inference over the test set.
 **The transformer did not pay for itself.** FinBERT scored 0.80 percentage points below the
 SVM while taking about 22x longer. Pre-training on financial text is an advantage on paper;
 on 8,100 short headlines, used without fine-tuning, it did not show up. The practical read is
-that a pre-trained model is not automatically the right choice — it has to earn the compute
+that a pre-trained model is not automatically the right choice, it has to earn the compute
 it costs.
 
 **Sample size, not architecture, is the binding constraint.** The best recurrent model landed
@@ -62,14 +62,14 @@ lose the start of a sentence by the time they reach the end; the gated variants 
 matters for headlines like "strong earnings **but** missed forecasts".
 
 **Naive Bayes is the honest floor.** It is 16 points behind the winner and trains in
-under a tenth of a second. That is what a baseline is for — it tells you how much of the accuracy is the
+under a tenth of a second. That is what a baseline is for, it tells you how much of the accuracy is the
 problem being easy versus the model being good.
 
 ---
 
 ## The methodological step that makes this comparison mean anything
 
-The combined sources held 9,000 rows, of which **504 were duplicate sentences (5.6%)** — and
+The combined sources held 9,000 rows, of which **504 were duplicate sentences (5.6%)** and
 some duplicates carried *conflicting labels*, the same sentence marked negative in one row and
 neutral in another. The data was also imbalanced: 54% neutral, 32% positive, 14% negative.
 
@@ -84,7 +84,7 @@ Both of those break a comparison, in different ways:
 
 So before any model was trained:
 
-1. Deduplicated — **8,496** unique samples remained.
+1. Deduplicated **8,496** unique samples remained.
 2. Downsampled each class to 2,700 — **8,100 samples, exactly 33.3% per class.**
 3. Applied one preprocessing pipeline to all of it, once: lowercase → strip punctuation →
    tokenise → remove stopwords → lemmatise → label-encode → TF-IDF (5,000 features).
@@ -107,7 +107,7 @@ The baseline agreeing while the neural networks disagree is what points at the d
 **A score below chance is a bug, not a bad model.** FinBERT-Tone first came out at **18.46%**,
 well under the 33.3% chance line. Nothing is genuinely that much worse than guessing. The
 cause was label order: the model emits Neutral/Positive/Negative and it was being scored
-against positive/negative/neutral. Correcting the mapping moved it to **68.58%** — 50 points
+against positive/negative/neutral. Correcting the mapping moved it to **68.58%** 50 points
 of apparent model quality that was really an indexing mistake.
 
 **Reproducibility had to be added.** The three recurrent models originally set no random seed,
@@ -143,7 +143,7 @@ without running anything. Training times will vary with your hardware; accuracie
 ### The dataset is not in this repository
 
 `data_cleaned.csv` is derived from the **Financial PhraseBank**, which is licensed
-**CC BY-NC-SA 3.0** — non-commercial, attribution, share-alike. A derived file inherits
+**CC BY-NC-SA 3.0** non-commercial, attribution, share-alike. A derived file inherits
 share-alike, so it is deliberately not redistributed here. Get the sources directly:
 
 - **Financial PhraseBank** — Malo, P., Sinha, A., Korhonen, P., Wallenius, J. and Takala, P.
