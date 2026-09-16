@@ -78,7 +78,7 @@ Both of those break a comparison, in different ways:
 - **Duplicates leak across the train/test split.** A sentence seen in training can reappear
   in test. A model with the capacity to memorise then scores higher than a model that
   generalises, and the comparison rewards the wrong thing. This hits high-capacity models
-  hardest — exactly the class of model the comparison is trying to judge fairly.
+  hardest, exactly the class of model the comparison is trying to judge fairly.
 - **Imbalance makes accuracy unreadable.** At 54% neutral, a model that predicts "neutral"
   every time scores 54% and has learned nothing.
 
@@ -96,7 +96,7 @@ the duplicates straight back in, which is the problem step 1 removed.
 **This is why my recurrent-network numbers are lower than published results on the same
 dataset.** Comparable studies report LSTM around 79.8% and GRU around 80.6% on Financial
 PhraseBank. Those studies did not deduplicate, and some upsampled to balance. The telling
-detail is that my **Naive Bayes matched** the published 62% almost exactly at 61.54% — a
+detail is that my **Naive Bayes matched** the published 62% almost exactly at 61.54%, a
 low-capacity model cannot exploit duplicates, so it was never inflated in the first place.
 The baseline agreeing while the neural networks disagree is what points at the duplicates.
 
